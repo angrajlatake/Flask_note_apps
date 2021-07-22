@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+    Welcome!
+{% endblock title %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="#">Notes</a>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/logout">Logout</a>
+  </li>
+   
+{% endblock navbar %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex p-3 my-3 rounded shadow-sm">
+            <div class="row">
+              <div class="col-8">
+                <h1 class="h3">Hello {{user.fname}} </h1>
+              </div>
+              <div class="col-4">
+                <small class="text-end"> Today is </small>
+              </div>
+              
+            </div>
+        </div>
+        <form method="POST">
+          <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <div class="form-floating mb-2">
+              <textarea class="form-control" id="floatingTextarea2" style="height: 150px" rows="3" name="note"></textarea>
+              <label for="floatingInput">Whats on your mind....</label>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" type="submit">Post</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
+            
+          
+            {% for note in user.notes %}
+              {% if loop.index <=4 %}
+                <div class="d-flex text-muted pt-3">
+                  <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                  
+                  <p class="pb-3 mb-0 small lh-sm border-bottom">
+                    <strong class="d-block text-gray-dark">{{ note.date }}</strong>
+                    {{ note.data }}
+                  </p>
+                </div>
+              {% endif %}
+
+            {%endfor %}
+            
+            <small class="d-block text-end mt-3">
+              <a href="#">All updates</a>
+            </small>
+          </div>
+    </div>    
+{% endblock body %}

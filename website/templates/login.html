@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+  Login
+{% endblock title %}
+{% block stylesheet %}
+  <link rel="stylesheet" href="/static/login.css">
+{% endblock stylesheet %}
+{% block navbar %}
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="#">About</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link active" aria-current="page" href="#">Sign Up</a>
+</li>   
+{% endblock navbar %}
+
+{% block body %}
+<div class="container my-5">
+  <main class="form-signin text-center">
+    <form action="" method="POST">
+  
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    
+      <div class="form-floating mb-2">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+        <label for="floatingInput" >Email address</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+        <label for="floatingPassword">Password</label>
+      </div>
+      {% with message = get_flashed_messages() %}
+      {% if message %}
+      <span class="badge bg-danger">{{ message }}</span>
+      {% endif %}
+        {% endwith %} 
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me" name="remember"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-md btn-primary" type="submit">Sign in</button>
+      
+      <a href="/">Not a member?</a>
+
+      </div>
+    </form>
+  </main>
+</div>
+
+  
+{% endblock body %}
+
+
